@@ -65,6 +65,22 @@ function nextSong() {
     playSong()
 }
 
+//function to move progress bar forward as song plays
+function updateProgress(e) {
+    const {duration, currentTime} = e.srcElement
+    const progressPercent = (currentTime / duration) * 100
+    progress.style.width = `${progressPercent}%`
+}
+
+//this function wont work until i fix the issue with the song not playing 
+function setProgress(e) {
+    const width = this. clientWidth
+    const clickX = e.offsetX
+    const duration = audio.duration
+
+    audio.currentTime = (clickX / width) * duration
+}
+
 //event lisreners
 playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play')
@@ -79,3 +95,8 @@ playBtn.addEventListener('click', () => {
 //change song events 
 prevBtn.addEventListener('click', prevSong)
 nextBtn.addEventListener('click', nextSong)
+
+audio.addEventListener('timeupdate', updateProgress)
+audio.addEventListener('click', setProgress)
+//audio api has "ended" built in 
+audio.addEventListener('ended', nextSong)
