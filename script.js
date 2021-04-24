@@ -15,7 +15,7 @@ const songs = ['hey', 'summer', 'ukulele']
 //keep track of songs
 let songIndex = 2
 
-//initially load song info DOM
+//initially load song into DOM
 loadSong(songs[songIndex]);
 
 //update song details
@@ -29,12 +29,16 @@ function playSong() {
     musicContainer.classList.add('play')
     playBtn.querySelector('i.fas').classList.remove('fa-play')
     playBtn.querySelector('i.fas').classList.add('fa-pause')
+
+    audio.play()
 }
 
 function pauseSong() {
     musicContainer.classList.remove('play')
     playBtn.querySelector('i.fas').classList.add('fa-play')
     playBtn.querySelector('i.fas').classList.remove('fa-pause')
+
+    audio.pause()
 }
 
 //event lisreners
